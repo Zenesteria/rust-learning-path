@@ -33,13 +33,18 @@ impl Bank{
     }
 }
 
-fn print_account(account:Account){
+fn print_account(account:&Account){
     println!("{:#?}", account)
 }
 
-fn main() {
-    let bank = Bank::new();
-    let account = Account::new(1, String::from("Me"));
+fn change_account(account:&mut Account, balance:i32){
+    account.balance = balance; 
+}
 
-    print_account(account);
+fn main() {
+    let mut account = Account::new(2, String::from("Adebisi"));
+    let acc_ref = &account;
+    change_account(&mut account, 200);
+    print_account(&account);
+
 }
